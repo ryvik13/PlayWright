@@ -1,13 +1,15 @@
 import { test, expect, Page } from '@playwright/test';
-import { login } from '../Pages/login.pages';
+import { openandlogin } from '../Pages/login.pages';
 
 const email = 'evgeny.tol@gmail.com'
 const pass = '123456'
 
+
+
 test('Purchase the order', async ({ page }) => {
 
 //login
-await login(page, email, pass);
+await openandlogin(page, email, pass);
 //purchase
 await page.getByRole('link', { name: 'Shop' }).click();
 await page.getByRole('link', { name: 'CHERRY TOMATOES By Nizhyn' }).click();

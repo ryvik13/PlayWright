@@ -1,14 +1,26 @@
-import { test, expect, Page } from '@playwright/test';
-const email = 'evgeny.tol@gmail.com'
-const pass = '123456'
+import { Page } from '@playwright/test';
 
-export async function login(page: Page, email: string, pass: string){
-    await page.goto('https://shopdemo-alex-hot.koyeb.app/');
-    await page.getByRole('link', { name: 'Welcome! ' }).click();
-    await page.getByRole('menuitem', { name: 'Login' }).click();
-    await page.getByRole('main').getByPlaceholder('Please Enter Your Email').click();
-    await page.getByRole('main').getByPlaceholder('Please Enter Your Email').fill(email);
-    await page.getByPlaceholder('Please Enter Your Password').click();
-    await page.getByPlaceholder('Please Enter Your Password').fill(pass);
-    await page.getByRole('button', { name: 'Login' }).click();
+export class Login{
+    page: Page;
+
+    constructor (page: Page){
+        this.page = page;
+    }
+    async open(){
+        await this.page.goto('https://shopdemo-alex-hot.koyeb.app/login');
+    }
+}
+    async Login(email: string, password: string) {
+        await this.page.getByRole('main').getByPlaceholder('Please Enter Your Email').click();
+        await this.page.getByRole('main').getByPlaceholder('Please Enter Your Email').fill(email);
+        await this.page.getByPlaceholder('Please Enter Your Password').click();
+        await this.page.getByPlaceholder('Please Enter Your Password').fill(password);
+        await this.page.getByRole('button', { name: 'Login' }).click();
+    }
+
+const email = 'evgeny.tol@gmail.com'
+const password = '123456'
+
+export async function openandlogin(page: Page, email: string, pass: string){
+    
 }
